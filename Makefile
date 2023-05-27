@@ -8,11 +8,18 @@ dropdb:
 	docker exec -it Dostonlv dropdb --username=dostonlv simple_bank
 
 migrateup:
-	migrate --path db/migration --database "postgresql://dostonlv:secret@localhost:5432/simple_bank?sslmode=disable" --verbose up
+	migrate --path db/migration --database "postgresql://dostonlv:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
+
+migrateup1:
+	migrate --path db/migration --database "postgresql://dostonlv:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up 1
 
 
 migratedown:
-	migrate --path db/migration --database "postgresql://dostonlv:secret@localhost:5432/simple_bank?sslmode=disable" --verbose down
+	migrate --path db/migration --database "postgresql://dostonlv:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
+
+migratedown1:
+	migrate --path db/migration --database "postgresql://dostonlv:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down 1
+
 
 sqlc:
 	sqlc generate
@@ -25,4 +32,4 @@ server:
 mock:
 	mockgen -package mockdb  -destination db/mock/store.go github.com/Dostonlv/simplebank/db/sqlc Store
 
-.PHONY: cretedb createdb dropdb migrateup migratedown sqlc test server mock
+.PHONY: cretedb createdb dropdb migrateup migratedown migrateup1 migratedown1 sqlc test server mock
