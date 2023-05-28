@@ -13,7 +13,11 @@ INSERT INTO accounts (
 SELECT * FROM accounts WHERE id = $1 LIMIT 1;
 
 -- name: ListAccounts :many
-SELECT * FROM accounts ORDER BY id  LIMIT $1 OFFSET $2;
+SELECT * FROM accounts
+Where owner=$1
+ORDER BY id
+LIMIT $2
+OFFSET $3;
 
 -- name: UpdateAccount :one
 UPDATE accounts
