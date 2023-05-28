@@ -39,6 +39,8 @@ jobs:
           curl -L https://github.com/golang-migrate/migrate/releases/download/v4.14.1/migrate.linux-amd64.tar.gz | tar xvz
           sudo mv migrate.linux-amd64 /usr/bin/migrate
           which migrate
+          migrate --version    
+          
 
     - name: Run migrations
       run: migrate -database postgres://dostonlv:dostonlv@localhost:5432/simple_bank?sslmode=disable -path db/migration up
